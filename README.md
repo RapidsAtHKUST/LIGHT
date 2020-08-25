@@ -1,6 +1,21 @@
-# UnlabeldSubgraphEnumeration
-## Licenses
-The code package can be ONLY used for your personal research purpose. Please DO NOT distribute the code to anyone else, as our research on set intersections is under going.
+# SubgraphEnumeration
+
+## Introduction
+Subgraph enumeration finds all subgraphs in an unlabeled graph that are isomorphic to another unlabeled graph. Existing depth-first search (DFS) based algorithms work on a single machine, but they are slow on large graphs due to the large search space. In contrast, distributed algorithms on clusters adopt a parallel breadth-first search (BFS) and improve the performance at the cost of large amounts of hardware resources, since the BFS approach incurs expensive data transfer and space cost due to the exponential number of intermediate results. In this paper, we develop an efficient parallel subgraph enumeration algorithm for a single machine, named LIGHT. Our algorithm reduces redundant computation in DFS by deferring the materialization of pattern vertices until necessary and converting the candidate set computation into finding a minimum set cover. Moreover, we parallelize our algorithm with both SIMD (Single-Instruction-Multiple-Data) instructions and SMT (Simultaneous Multi-Threading) technologies in modern CPUs. Our experimental results show that LIGHT running on a single machine outperforms existing single-machine DFS algorithms by more than three orders of magnitude, and is up to two orders of magnitude faster than the state-of-the-art distributed algorithms running on 12 machines. Additionally, LIGHT completed all test cases, whereas the existing algorithms fail in some cases due to either running out of time or running out of available hardware resources.
+
+If you use our codes in your research, please kindly cite our paper.
+
+```zsh
+@inproceedings{sun2019efficient,
+  title={Efficient parallel subgraph enumeration on a single machine},
+  author={Sun, Shixuan and Che, Yulin and Wang, Lipeng and Luo, Qiong},
+  booktitle={2019 IEEE 35th International Conference on Data Engineering (ICDE)},
+  pages={232--243},
+  year={2019},
+  organization={IEEE}
+}
+```
+
 
 ## Compile
 Under the src directory, execute the following commands to compile the source code. In our experiments, we use icpc 16.0.0 to compile the source code. If you do not install icpc, then replace line 3 with "cmake ..". After compiling, You will get two binaries "LIGHT" and "Converter".
